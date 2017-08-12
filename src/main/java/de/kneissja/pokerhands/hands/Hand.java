@@ -16,6 +16,11 @@ public class Hand {
     private List<Card> cards;
 
     /**
+     * Rating of the hand
+     */
+    private HandRating rating;
+
+    /**
      * Number of cards in a hand
      */
     private static final int HAND_SIZE = 5;
@@ -26,8 +31,9 @@ public class Hand {
      */
     public Hand(final Collection<Card> cards) {
         verifyCards(cards);
-        this.cards = new ArrayList<Card>(cards);
+        this.cards = new ArrayList<>(cards);
         this.cards.sort(new CardComparator());
+        rating = new HandRater().rateHand(this);
     }
 
     private void verifyCards(final Collection<Card> cards) {
@@ -46,6 +52,10 @@ public class Hand {
         }
     }
 
+    /**
+     * Returns an unmodifiable list containing the sorted cards of this hand
+     * @return list with descending sorted cards
+     */
     public List<Card> getCards() {
         return Collections.unmodifiableList(cards);
     }
