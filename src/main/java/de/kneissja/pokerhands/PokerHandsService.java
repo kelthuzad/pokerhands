@@ -1,8 +1,6 @@
 package de.kneissja.pokerhands;
 
-import de.kneissja.pokerhands.cards.Hand;
-
-import java.util.List;
+import de.kneissja.pokerhands.hands.Hand;
 
 /**
  * Service that provides access to the functionality of the program

@@ -1,7 +1,7 @@
 package de.kneissja.pokerhands;
 
 import de.kneissja.pokerhands.cards.Card;
-import de.kneissja.pokerhands.cards.Hand;
+import de.kneissja.pokerhands.hands.Hand;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
