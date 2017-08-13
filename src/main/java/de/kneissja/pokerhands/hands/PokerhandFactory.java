@@ -31,6 +31,8 @@ public class PokerhandFactory {
         switch (rating) {
             case HIGH_CARD: return new HighCardHand(cardList);
             case PAIR: return new PairHand(cardList);
+            case TWO_PAIRS: return new TwoPairHand(cardList);
+            case THREE_OF_A_KIND: return new ThreeOfAKindHand(cardList);
             default: throw new IllegalStateException("Unknown card rating: "+rating);
         }
     }
