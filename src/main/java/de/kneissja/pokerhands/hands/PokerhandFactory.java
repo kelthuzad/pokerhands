@@ -28,13 +28,11 @@ public class PokerhandFactory {
         cardList.sort(new CardComparator());
         HandRating rating = new HandRater().rateHand(cardList);
 
-        // TODO: implement different cards
-        return new Hand(cardList, HandRating.UNKNOWN) {
-            @Override
-            public List<Card> getCards() {
-                return super.getCards();
-            }
-        };
+        switch (rating) {
+            case HIGH_CARD: return new HighCardHand(cardList);
+            case PAIR: return new PairHand(cardList);
+            default: throw new IllegalStateException("Unknown card rating: "+rating);
+        }
     }
 
     /**
