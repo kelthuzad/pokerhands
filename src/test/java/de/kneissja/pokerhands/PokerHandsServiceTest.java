@@ -2,6 +2,7 @@ package de.kneissja.pokerhands;
 
 import de.kneissja.pokerhands.cards.Card;
 import de.kneissja.pokerhands.hands.Hand;
+import de.kneissja.pokerhands.hands.PokerhandFactory;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -10,7 +11,7 @@ import java.util.Arrays;
 public class PokerHandsServiceTest {
 
     private Hand createHand(Card... cards) {
-        return new Hand(Arrays.asList(cards));
+        return new PokerhandFactory().createHand(cards);
     }
 
     @Test
