@@ -6,26 +6,27 @@ import de.kneissja.pokerhands.hands.HandRating;
 import java.util.List;
 
 /**
- * Checks for Pair hands.
+ * Checks for Two Pair hands.
  * @author kneissja
  */
-class PairRater implements Rateable {
-
+class TwoPairRater implements Rateable {
     @Override
     public boolean test(List<Card> cards) {
-        // checks if there is at least one pair of cards with the same value
+        // check for two pairs of cards with the same values
+        int pairCount = 0;
         int value = -1;
         for (final Card card : cards) {
             if (value == card.getValue()) {
-                return true;
+                pairCount++;
+                value = -1;
             }
             value = card.getValue();
         }
-        return false;
+        return pairCount == 2;
     }
 
     @Override
     public HandRating getRating() {
-        return HandRating.PAIR;
+        return HandRating.TWO_PAIRS;
     }
 }

@@ -6,18 +6,24 @@ import de.kneissja.pokerhands.hands.HandRating;
 import java.util.List;
 
 /**
- * Checks for Pair hands.
+ * Checks for Three Of A Kind hands.
  * @author kneissja
  */
-class PairRater implements Rateable {
-
+class ThreeOfAKindRater implements Rateable {
     @Override
     public boolean test(List<Card> cards) {
-        // checks if there is at least one pair of cards with the same value
+
+        // check for three cards with the same value
+        boolean pairFound = false;
         int value = -1;
         for (final Card card : cards) {
             if (value == card.getValue()) {
-                return true;
+                if (pairFound) { // if pair was already found, this is the third
+                    return true;
+                }
+                pairFound = true;
+            } else {
+                pairFound = false;
             }
             value = card.getValue();
         }
@@ -26,6 +32,6 @@ class PairRater implements Rateable {
 
     @Override
     public HandRating getRating() {
-        return HandRating.PAIR;
+        return HandRating.THREE_OF_A_KIND;
     }
 }

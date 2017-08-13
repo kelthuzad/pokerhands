@@ -6,17 +6,19 @@ import de.kneissja.pokerhands.hands.HandRating;
 import java.util.List;
 
 /**
- * Checks for high card hands.
+ * Checks for Flush hands.
  * @author kneissja
  */
-class HighCardRater implements Rateable {
+class FlushRater implements Rateable {
     @Override
     public boolean test(List<Card> cards) {
-        return true; // high card is always valid
+        // all cards must have the same suit
+        final Card firstCard = cards.get(0);
+        return cards.stream().allMatch(card -> card.getSuit() == firstCard.getSuit());
     }
 
     @Override
     public HandRating getRating() {
-        return HandRating.HIGH_CARD;
+        return HandRating.FLUSH;
     }
 }
