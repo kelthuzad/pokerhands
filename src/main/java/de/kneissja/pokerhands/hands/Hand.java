@@ -1,7 +1,6 @@
 package de.kneissja.pokerhands.hands;
 
 import de.kneissja.pokerhands.cards.Card;
-import de.kneissja.pokerhands.cards.CardComparator;
 
 import java.util.*;
 
@@ -9,11 +8,11 @@ import java.util.*;
  * Represents the poker hand
  * @author kneissja
  */
-public class Hand {
+public abstract class Hand implements Comparable<Hand> {
     /**
      * All cards in this hand
      */
-    private List<Card> cards;
+    private final List<Card> cards;
 
     /**
      * Rating of the hand
@@ -21,35 +20,13 @@ public class Hand {
     private HandRating rating;
 
     /**
-     * Number of cards in a hand
-     */
-    private static final int HAND_SIZE = 5;
-
-    /**
      * Creates a new poker hand.
-     * @param cards All cards in the hand. Must be exactly HAND_SIZE cards
+     * @param cards All cards in the hand, ordered by card value in descending order
+     * @param rating The rating of the hand
      */
-    public Hand(final Collection<Card> cards) {
-        verifyCards(cards);
-        this.cards = new ArrayList<>(cards);
-        this.cards.sort(new CardComparator());
-        rating = new HandRater().rateHand(this);
-    }
-
-    private void verifyCards(final Collection<Card> cards) {
-        if (cards == null) {
-            throw new IllegalArgumentException("Input may not be null");
-        }
-
-        if (cards.size() != HAND_SIZE) {
-            throw new IllegalArgumentException("Wrong number of cards in the hand: "+cards.size()+", must be "+HAND_SIZE);
-        }
-
-        // add cards to HashSet to remove duplicate cards from the collection
-        HashSet<Card> cardHashSet = new HashSet<>(cards);
-        if (cardHashSet.size() != HAND_SIZE) {
-            throw new IllegalArgumentException("Input contains duplicate card(s)");
-        }
+    Hand(final List<Card> cards, final HandRating rating) {
+        this.rating = rating;
+        this.cards = cards;
     }
 
     /**
@@ -60,4 +37,25 @@ public class Hand {
         return Collections.unmodifiableList(cards);
     }
 
+    /**
+     * Returns the rating of the hand
+     * @return rating of this hand
+     */
+    public HandRating getRating() {
+        return rating;
+    }
+
+    /**
+     * Compares the hand with another hand.
+     * @param otherHand hand to compare with
+     * @return 1, 0 or -1 if this hand is higher, equal or lower than the other hand
+     */
+    @Override
+    public int compareTo(Hand otherHand) {
+        if (otherHand == null) {
+            return 1;
+        }
+
+        return getRating().compareTo(otherHand.getRating());
+    }
 }

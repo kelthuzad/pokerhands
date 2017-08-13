@@ -14,6 +14,10 @@ public class PokerHandsService {
      * @return the Hand with the highest rank. Null if both hands are equally high
      */
     public Hand findHighestPokerhand(Hand hand1, Hand hand2) {
-        return null;
+        int compare = hand1.compareTo(hand2);
+        if (compare == 0) {
+            return null;
+        }
+        return compare > 0 ? hand1 : hand2;
     }
 }
