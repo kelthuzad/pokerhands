@@ -33,6 +33,9 @@ public class PokerhandFactory {
             case PAIR: return new PairHand(cardList);
             case TWO_PAIRS: return new TwoPairHand(cardList);
             case THREE_OF_A_KIND: return new ThreeOfAKindHand(cardList);
+            case STRAIGHT: return new StraightHand(cardList);
+            case FLUSH: return new FlushHand(cardList);
+            case FULL_HOUSE: return new FullHouseHand(cardList);
             default: throw new IllegalStateException("Unknown card rating: "+rating);
         }
     }
