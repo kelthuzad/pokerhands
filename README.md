@@ -2,6 +2,9 @@
 
 Rates poker card hands and determines the highest hand.
 
+### Requirements
+Java 8 is required to build and run the application
+
 ### Run tests 
 **mvn test**
 
