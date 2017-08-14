@@ -58,4 +58,18 @@ public abstract class Hand implements Comparable<Hand> {
 
         return getRating().compareTo(otherHand.getRating());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj != null &&
+               obj instanceof Hand &&
+               getCards().equals(((Hand) obj).getCards()) &&
+               getRating().equals(((Hand)obj).getRating());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCards(), getRating());
+    }
 }
