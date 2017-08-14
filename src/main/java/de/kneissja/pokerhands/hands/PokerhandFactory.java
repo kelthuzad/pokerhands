@@ -63,7 +63,7 @@ public class PokerhandFactory {
         // add cards to HashSet to remove duplicate cards from the collection
         HashSet<Card> cardHashSet = new HashSet<>(cards);
         if (cardHashSet.size() != HAND_SIZE) {
-            throw new IllegalArgumentException("Input contains duplicate card(s)");
+            throw new IllegalArgumentException("Input contains duplicate card(s) or null card(s)");
         }
     }
 }
