@@ -72,4 +72,9 @@ public abstract class Hand implements Comparable<Hand> {
     public int hashCode() {
         return Objects.hash(getCards(), getRating());
     }
+
+    @Override
+    public String toString() {
+        return "Hand consisting of "+getCards()+" => "+getRating();
+    }
 }
