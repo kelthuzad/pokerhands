@@ -36,6 +36,8 @@ public class PokerhandFactory {
             case STRAIGHT: return new StraightHand(cardList);
             case FLUSH: return new FlushHand(cardList);
             case FULL_HOUSE: return new FullHouseHand(cardList);
+            case FOUR_OF_A_KIND: return new FourOfAKindHand(cardList);
+            case STRAIGHT_FLUSH: return new StraightFlushHand(cardList);
             default: throw new IllegalStateException("Unknown card rating: "+rating);
         }
     }
